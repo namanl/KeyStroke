@@ -35,16 +35,16 @@ def redirect_home_temp(message=None):
 
     import os
 
-    r1 = open('D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user.csv') # Here your csv file
+    r1 = open('D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user1.csv') # Here your csv file
     r=csv.reader(r1)
     lines = list(r)
     lines[0][0] = tempvalue
-    writer1 = open("D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user.csv", 'w', newline='')
+    writer1 = open("D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user1.csv", 'w', newline='')
     writer=csv.writer(writer1)
     writer.writerows(lines)
     writer1.close()
     r1.close()
-    r1=open("D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user.csv")
+    r1=open("D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/user1.csv")
     fout=open("D:/F11/STUDIES/SEM7/HCI/PROJECT/Keystroke/keystroke.trial.csv","a")
     for line in r1:
         fout.write(line)
@@ -60,6 +60,7 @@ def redirect_home_temp(message=None):
         idx2 = np.argmax(dists[dists < 0])
         x = [missrates[idx1], farates[idx1]]
         y = [missrates[idx2], farates[idx2]]
+        print(fpr,'\n',tpr,'\n',thresholds,'\n',user_scores,'\n',x,'\n',y,'\n',idx1,'\n',idx2)
         a = (x[0] - x[1]) / (y[1] - x[1] - y[0] + x[0])
         eer = x[0] + a * (y[0] - x[0])
         return eer
