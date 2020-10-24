@@ -5,7 +5,7 @@ import os
 from flask import Flask, render_template, request, session, make_response
 
 app = Flask(__name__)
-app.secret_key = "Vaibhav"
+app.secret_key = "Naman"
 Database.initialize()
 tempvalue=''
 tempvalue_reg=''
@@ -91,7 +91,7 @@ def redirect_home_temp(message=None):
                 genuine_user_data = data.loc[data.subject == tempvalue,"H.period":"UD.l.Return"]
                 print(genuine_user_data)
                 imposter_data = data.loc[data.subject != tempvalue, :]
-
+                # one class svm
                 self.train = genuine_user_data[-1:]
                 self.test_genuine = genuine_user_data[:20]
                 self.test_imposter = imposter_data.groupby("subject"). \
@@ -219,8 +219,8 @@ def login_client():
 def login_admin():
     name = request.form['admin_name']
     password = request.form['admin_pass']
-    if name=="Saksham":
-        if password=="Saini":
+    if name=="Naman":
+        if password=="naman":
             return render_template('home-admin.html')
     else:
         session['email'] = None
